@@ -1,7 +1,9 @@
 # Netaxept API Library
 
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://api.travis-ci.com/fdmweb/FDM-netaxept.png?branch=master)](https://travis-ci.org/fdmweb/FDM-netaxept)
 [![Latest Stable Version](https://poser.pugx.org/fdm/netaxept/version.png)](https://packagist.org/packages/fdm/netaxept)
+[![Code Coverage](https://img.shields.io/codecov/c/github/fdmweb/FDM-netaxept.svg)](https://codecov.io/gh/fdmweb/FDM-netaxept)
 
 This project provides a simple interface to NETS' Netaxept payment gateway.
 
