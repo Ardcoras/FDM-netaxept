@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PaymentInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MerchantId>12000353</MerchantId>
+    <QueryFinished>2018-06-04T16:26:39.1038431+02:00</QueryFinished>
+    <TransactionId>eafa5dda31444a71bbf49b5e5b5b0590</TransactionId>
+    <AuthenticationInformation />
+    <AvtaleGiroInformation />
+    <CardInformation>
+        <Issuer>Visa</Issuer>
+        <IssuerCountry>NO</IssuerCountry>
+        <MaskedPAN>492500******0004</MaskedPAN>
+        <PaymentMethod>Visa</PaymentMethod>
+        <ExpiryDate>2112</ExpiryDate>
+        <IssuerId>3</IssuerId>
+    </CardInformation>
+    <CustomerInformation>
+        <Email />
+        <PhoneNumber />
+        <CustomerNumber />
+        <FirstName />
+        <LastName />
+        <Address1 />
+        <Address2 />
+        <Postcode />
+        <Town />
+        <Country />
+        <SocialSecurityNumber />
+        <CompanyName />
+        <CompanyRegistrationNumber />
+    </CustomerInformation>
+    <ErrorLog />
+    <History>
+        <TransactionLogLine>
+            <Amount>535800</Amount>
+            <DateTime>2018-05-30T14:31:10.693</DateTime>
+            <Description>12000353-1 OfflineTransaction Test 2</Description>
+            <Operation>Setup</Operation>
+            <TransactionReconRef>offlinetxn</TransactionReconRef>
+        </TransactionLogLine>
+        <TransactionLogLine>
+            <DateTime>2018-05-30T14:31:11.68</DateTime>
+            <Description>127.0.0.1: AutoAuth</Description>
+            <Operation>Auth</Operation>
+            <BatchNumber>309</BatchNumber>
+            <TransactionReconRef>offlinetxn</TransactionReconRef>
+        </TransactionLogLine>
+        <TransactionLogLine>
+            <DateTime>2018-06-04T16:26:30.333</DateTime>
+            <Description>127.0.0.1: 12000353-1</Description>
+            <Operation>Annul</Operation>
+            <BatchNumber>309</BatchNumber>
+            <TransactionReconRef>offlinetxn</TransactionReconRef>
+        </TransactionLogLine>
+    </History>
+    <OrderInformation>
+        <Amount>535800</Amount>
+        <Currency>DKK</Currency>
+        <OrderNumber>eafa5dda31444a71bbf49b5e5b5b0590</OrderNumber>
+        <OrderDescription>Test generated transaction</OrderDescription>
+        <Fee>0</Fee>
+        <RoundingAmount>0</RoundingAmount>
+        <Total>535800</Total>
+        <Timestamp>2018-05-30T14:31:10.693</Timestamp>
+    </OrderInformation>
+    <SecurityInformation>
+        <IPCountryMatchesIssuingCountry>true</IPCountryMatchesIssuingCountry>
+    </SecurityInformation>
+    <Summary>
+        <AmountCaptured>0</AmountCaptured>
+        <AmountCredited>0</AmountCredited>
+        <Annulled>true</Annulled>
+        <Annuled>true</Annuled>
+        <Authorized>true</Authorized>
+        <AuthorizationId>047130</AuthorizationId>
+    </Summary>
+    <TerminalInformation>
+        <Browser />
+    </TerminalInformation>
+</PaymentInfo>

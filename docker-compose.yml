@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  php:
+    build: ./docker/php
+    container_name: "${CURRDIR}_php"
+    environment:
+      PHP_IDE_CONFIG: serverName=Docker
+    volumes:
+      - .:/var/www/html

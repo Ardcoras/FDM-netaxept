@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PaymentInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MerchantId>12000353</MerchantId>
+    <QueryFinished>2018-06-04T16:36:15.1726277+02:00</QueryFinished>
+    <TransactionId>58a253db54ef48e1a232b7b8b67eea3e</TransactionId>
+    <AuthenticationInformation />
+    <AvtaleGiroInformation />
+    <CardInformation>
+        <MaskedPAN />
+    </CardInformation>
+    <CustomerInformation>
+        <Email>hfa@fdm.dk</Email>
+        <IP>87.48.129.98</IP>
+        <PhoneNumber />
+        <CustomerNumber>1697050</CustomerNumber>
+        <FirstName>Henrik</FirstName>
+        <LastName>Fangel</LastName>
+        <Address1 />
+        <Address2 />
+        <Postcode />
+        <Town />
+        <Country />
+        <SocialSecurityNumber />
+        <CompanyName />
+        <CompanyRegistrationNumber />
+    </CustomerInformation>
+    <Error>
+        <DateTime>2018-04-05T10:58:45.933</DateTime>
+        <Operation>Terminal</Operation>
+        <ResponseCode>17</ResponseCode>
+        <ResponseSource>Terminal</ResponseSource>
+        <ResponseText>Cancelled by customer.</ResponseText>
+    </Error>
+    <ErrorLog>
+        <PaymentError>
+            <DateTime>2018-04-05T10:58:45.933</DateTime>
+            <Operation>Terminal</Operation>
+            <ResponseCode>17</ResponseCode>
+            <ResponseSource>Terminal</ResponseSource>
+            <ResponseText>Cancelled by customer.</ResponseText>
+        </PaymentError>
+    </ErrorLog>
+    <History>
+        <TransactionLogLine>
+            <DateTime>2018-04-05T10:58:33.37</DateTime>
+            <Description />
+            <Operation>Register</Operation>
+            <TransactionReconRef>500025614</TransactionReconRef>
+        </TransactionLogLine>
+    </History>
+    <OrderInformation>
+        <Amount>64000</Amount>
+        <Currency>DKK</Currency>
+        <OrderNumber>FDM-25614-76</OrderNumber>
+        <OrderDescription> </OrderDescription>
+        <Fee>0</Fee>
+        <RoundingAmount>0</RoundingAmount>
+        <Total>64000</Total>
+        <Timestamp>2018-04-05T10:58:33.37</Timestamp>
+    </OrderInformation>
+    <SecurityInformation>
+        <IPCountryMatchesIssuingCountry>true</IPCountryMatchesIssuingCountry>
+    </SecurityInformation>
+    <Summary>
+        <AmountCaptured>0</AmountCaptured>
+        <AmountCredited>0</AmountCredited>
+        <Annulled>false</Annulled>
+        <Annuled>false</Annuled>
+        <Authorized>false</Authorized>
+    </Summary>
+    <TerminalInformation>
+        <CustomerEntered>2018-04-05T10:58:35.167</CustomerEntered>
+        <CustomerRedirected>2018-04-05T10:58:45.963</CustomerRedirected>
+        <Browser>Firefox-Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0</Browser>
+    </TerminalInformation>
+</PaymentInfo>

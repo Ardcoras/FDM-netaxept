@@ -1,0 +1,19 @@
+dist: trusty
+
+language: php
+
+php:
+  - 7.1
+
+branches:
+  only:
+  - master
+  - develop
+
+install:
+  - travis_retry composer install --no-interaction --prefer-dist
+
+script:
+  - make ecs
+  - make phpstan
+  - make test

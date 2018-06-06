@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PaymentInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MerchantId>1337</MerchantId>
+    <QueryFinished>2018-06-04T13:59:47.0086093+02:00</QueryFinished>
+    <TransactionId>thisisarandomtransactionid</TransactionId>
+    <AuthenticationInformation />
+    <AvtaleGiroInformation />
+    <CardInformation>
+        <Issuer>Visa</Issuer>
+        <IssuerCountry>NO</IssuerCountry>
+        <MaskedPAN>492500******0004</MaskedPAN>
+        <PaymentMethod>Visa</PaymentMethod>
+        <ExpiryDate>2112</ExpiryDate>
+        <IssuerId>3</IssuerId>
+    </CardInformation>
+    <CustomerInformation>
+        <Email>bilbo@bagend.sh</Email>
+        <PhoneNumber>+4555378008</PhoneNumber>
+        <CustomerNumber />
+        <FirstName>Bilbo</FirstName>
+        <LastName>Baggins</LastName>
+        <Address1>Bag End</Address1>
+        <Address2 />
+        <Postcode>SH1</Postcode>
+        <Town>The Shire</Town>
+        <Country>Middle Earth</Country>
+        <SocialSecurityNumber />
+        <CompanyName />
+        <CompanyRegistrationNumber />
+    </CustomerInformation>
+    <ErrorLog />
+    <History>
+        <TransactionLogLine>
+            <Amount>246500</Amount>
+            <DateTime>2018-05-30T14:31:12.867</DateTime>
+            <Description>12000353-1 OfflineTransaction Test 4</Description>
+            <Operation>Setup</Operation>
+            <TransactionReconRef>offlinetxn</TransactionReconRef>
+        </TransactionLogLine>
+        <TransactionLogLine>
+            <DateTime>2018-05-30T14:31:13.867</DateTime>
+            <Description>127.0.0.1: AutoAuth</Description>
+            <Operation>Auth</Operation>
+            <BatchNumber>309</BatchNumber>
+            <TransactionReconRef>offlinetxn</TransactionReconRef>
+        </TransactionLogLine>
+    </History>
+    <OrderInformation>
+        <Amount>246500</Amount>
+        <Currency>DKK</Currency>
+        <OrderNumber>thisisarandomtransactionid</OrderNumber>
+        <OrderDescription>Test generated transaction</OrderDescription>
+        <Fee>0</Fee>
+        <RoundingAmount>0</RoundingAmount>
+        <Total>246500</Total>
+        <Timestamp>2018-05-30T14:31:12.867</Timestamp>
+    </OrderInformation>
+    <SecurityInformation>
+        <IPCountryMatchesIssuingCountry>true</IPCountryMatchesIssuingCountry>
+    </SecurityInformation>
+    <Summary>
+        <AmountCaptured>0</AmountCaptured>
+        <AmountCredited>0</AmountCredited>
+        <Annulled>false</Annulled>
+        <Annuled>false</Annuled>
+        <Authorized>true</Authorized>
+        <AuthorizationId>047132</AuthorizationId>
+    </Summary>
+    <TerminalInformation>
+        <Browser />
+    </TerminalInformation>
+</PaymentInfo>
