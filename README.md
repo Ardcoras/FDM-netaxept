@@ -1,5 +1,8 @@
 # Netaxept API Library
 
+[![Build Status](https://api.travis-ci.com/fdmweb/FDM-netaxept.png?branch=master)](https://travis-ci.org/fdmweb/FDM-netaxept)
+[![Latest Stable Version](https://poser.pugx.org/fdm/netaxept/version.png)](https://packagist.org/packages/fdm/netaxept)
+
 This project provides a simple interface to NETS' Netaxept payment gateway.
 
 ## Using the library
