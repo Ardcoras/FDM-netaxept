@@ -13,6 +13,7 @@
     <testsuites>
         <testsuite name="App Test Suite">
             <directory>./tests/TestCase</directory>
+            <exclude>./tests/TestCase/Netaxept/ApiTest.php</exclude>
         </testsuite>
         <!-- Add plugin test suites here. -->
     </testsuites>
