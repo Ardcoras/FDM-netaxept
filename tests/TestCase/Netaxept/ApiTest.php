@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Tests\TestCase\Netaxept;
 
 use FDM\Netaxept\Api;
-use FDM\Netaxept\Response\Factory;
 use FDM\Netaxept\Traits\FileLoaderTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -42,6 +41,6 @@ class ApiTest extends TestCase
         $handler = HandlerStack::create($mock);
         $client = new Client(['handler' => $handler]);
 
-        return new Api('placeholdermerchant', 'placeholdertoken', new Factory(), $client, true);
+        return new Api('placeholdermerchant', 'placeholdertoken', null, null, $client, true);
     }
 }

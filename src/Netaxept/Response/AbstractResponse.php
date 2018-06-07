@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace FDM\Netaxept\Response;
 
-class AbstractResponse
+class AbstractResponse implements ErrorInterface
 {
     /**
      * @var \SimpleXMLElement
@@ -23,13 +23,20 @@ class AbstractResponse
     public function __construct(\SimpleXMLElement $xml)
     {
         $this->xml = $xml;
+    }
 
-        if (count($this->xml->Error)) {
-            throw new Exception(
-                (string) $this->xml->Error->ResponseText,
-                (int) $this->xml->Error->ResponseCode,
-                (string) $this->xml->Error->ResponseSource
-            );
-        }
+    public function hasError(): bool
+    {
+        return (bool) count($this->xml->Error);
+    }
+
+    public function getError(): array
+    {
+        return [
+            'dateTime' => (string) $this->xml->Error->DateTime,
+            'code' => (string) $this->xml->Error->ResponseCode,
+            'source' => (string) $this->xml->Error->ResponseSource,
+            'text' => (string) $this->xml->Error->ResponseText,
+        ];
     }
 }

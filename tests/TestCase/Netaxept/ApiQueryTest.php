@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Tests\TestCase\Netaxept;
 
-use FDM\Netaxept\Response\Exception;
 use FDM\Netaxept\Response\Query;
 use FDM\Netaxept\Response\QueryInterface;
 use PHPUnit\Framework\Assert;
@@ -21,7 +20,7 @@ use PHPUnit\Framework\Assert;
 class ApiQueryTest extends ApiTest
 {
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \FDM\Netaxept\Exception\AuthenticationException
      * @expectedExceptionMessage Test: Unable to authenticate merchant (credentials not passed)
      */
     public function testInvalidAuthMissingCredentials()
@@ -30,7 +29,7 @@ class ApiQueryTest extends ApiTest
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \FDM\Netaxept\Exception\AuthenticationException
      * @expectedExceptionMessage Authentication failed (Test) MerchantId: 1337
      */
     public function testInvalidAuthInvalidToken()
@@ -40,12 +39,11 @@ class ApiQueryTest extends ApiTest
 
     public function testGetInfo()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/query/paymentinfo.xml');
         /** @var Query $trans */
-        $trans = $instance->getTransaction('placeholder');
+        $trans = $this->getInstanceForRequestFixture('responses/query/paymentinfo.xml')->getTransaction('placeholder');
 
         Assert::assertInstanceOf(Query::class, $trans);
-
+        Assert::assertFalse($trans->hasError(), 'Response should not contain error!');
         Assert::assertEquals([
             'amountCaptured' => 0,
             'amountCredited' => 0,
@@ -53,11 +51,8 @@ class ApiQueryTest extends ApiTest
             'authorized' => true,
             'authorizationId' => '047132',
         ], $trans->getSummary());
-
         Assert::assertEquals('1337', $trans->getMerchantId());
-
         Assert::assertEquals('thisisarandomtransactionid', $trans->getTransactionId());
-
         Assert::assertEquals([
             'email' => 'bilbo@bagend.sh',
             'phoneNumber' => '+4555378008',
@@ -73,7 +68,6 @@ class ApiQueryTest extends ApiTest
             'companyName' => '',
             'companyRegistrationNumber' => '',
         ], $trans->getCustomerInfo());
-
         Assert::assertEquals([
             [
                 'amount' => '246500',
@@ -89,7 +83,6 @@ class ApiQueryTest extends ApiTest
                 'transactionReconRef' => 'offlinetxn',
             ],
         ], $trans->getHistory());
-
         Assert::assertEquals([
             'amount' => 246500,
             'currency' => 'DKK',
@@ -100,67 +93,54 @@ class ApiQueryTest extends ApiTest
             'total' => 246500,
             'timestamp' => '2018-05-30T14:31:12.867',
         ], $trans->getOrderInformation());
-
         Assert::assertEquals(QueryInterface::STATUS_AUTHORIZED, $trans->getTransactionStatus());
     }
 
     public function testCaptured()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/query/captured.xml');
         /** @var Query $trans */
-        $trans = $instance->getTransaction('placeholder');
+        $trans = $this->getInstanceForRequestFixture('responses/query/captured.xml')->getTransaction('placeholder');
 
+        Assert::assertInstanceOf(Query::class, $trans);
+        Assert::assertFalse($trans->hasError(), 'Response should not contain error!');
         Assert::assertEquals(QueryInterface::STATUS_CAPTURED, $trans->getTransactionStatus());
-
         Assert::assertEquals(73700, $trans->getOrderTotal());
     }
 
     public function testCredited()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/query/credited.xml');
         /** @var Query $trans */
-        $trans = $instance->getTransaction('placeholder');
+        $trans = $this->getInstanceForRequestFixture('responses/query/credited.xml')->getTransaction('placeholder');
 
+        Assert::assertInstanceOf(Query::class, $trans);
+        Assert::assertFalse($trans->hasError(), 'Response should not contain error!');
         Assert::assertEquals(QueryInterface::STATUS_CREDITED, $trans->getTransactionStatus());
-
         Assert::assertEquals(73700, $trans->getOrderTotal());
     }
 
     public function testCancelled()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/query/cancelled.xml');
         /** @var Query $trans */
-        $trans = $instance->getTransaction('placeholder');
+        $trans = $this->getInstanceForRequestFixture('responses/query/cancelled.xml')->getTransaction('placeholder');
 
+        Assert::assertInstanceOf(Query::class, $trans);
+        Assert::assertFalse($trans->hasError(), 'Response should not contain error!');
         Assert::assertEquals(QueryInterface::STATUS_CANCELLED, $trans->getTransactionStatus());
-
         Assert::assertEquals(535800, $trans->getOrderTotal());
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Cancelled by customer.
-     * @expectedExceptionCode 17
-     */
-    public function testErrorThrowsCorrectException()
+    public function testErrorPresentAndCorrect()
     {
-        $this->getInstanceForRequestFixture('responses/query/user_cancelled.xml')->getTransaction('placeholder');
-    }
+        /** @var Query $trans */
+        $trans = $this->getInstanceForRequestFixture('responses/query/user_cancelled.xml')->getTransaction('placeholder');
 
-    public function testErrorThrowsCorrectException2()
-    {
-        $instance = $this->getInstanceForRequestFixture('responses/query/user_cancelled.xml');
-
-        try {
-            $instance->getTransaction('placeholder');
-        } catch (Exception $e) {
-            Assert::assertEquals(17, $e->getCode(), 'Invalid code!');
-            Assert::assertEquals('Cancelled by customer.', $e->getMessage(), 'Invalid message!');
-            Assert::assertEquals('Terminal', $e->getSource(), 'Invalid source!');
-
-            return;
-        }
-
-        throw new \Exception("Shouldn't get here!");
+        Assert::assertInstanceOf(Query::class, $trans);
+        Assert::assertTrue($trans->hasError(), 'Response should contain error!');
+        Assert::assertEquals([
+            'dateTime' => '2018-04-05T10:58:45.933',
+            'code' => '17',
+            'source' => 'Terminal',
+            'text' => 'Cancelled by customer.',
+        ], $trans->getError(), 'Incorrect error response received.');
     }
 }

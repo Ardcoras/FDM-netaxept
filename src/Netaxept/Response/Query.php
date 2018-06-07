@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace FDM\Netaxept\Response;
 
-class Query extends AbstractResponse implements QueryInterface
+class Query extends AbstractResponse implements QueryInterface, ErrorInterface
 {
     /**
      * {@inheritdoc}
