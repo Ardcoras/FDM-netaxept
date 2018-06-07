@@ -9,9 +9,15 @@ This project provides a simple interface to NETS' Netaxept payment gateway.
 
 ## Using the library
 
+To install using composer:
+
+```bash
+composer require fdm/netaxept
+```
+
 ```php
 <?php
-
+require 'vendor/autoload.php';
 // Instantiate the API with the required merchantId, token, and a response factory
 $responseFactory = new \FDM\Netaxept\Response\Factory();
 $api = new \FDM\Netaxept\Api('merchantId', 'token', $responseFactory);
