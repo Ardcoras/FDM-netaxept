@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Tests\TestCase\Netaxept;
 
 use FDM\Netaxept\Api;
+use FDM\Netaxept\Response\Exception;
 use FDM\Netaxept\Response\Factory;
 use FDM\Netaxept\Response\Query;
 use FDM\Netaxept\Response\QueryInterface;
@@ -35,8 +36,7 @@ class ApiTest extends TestCase
      */
     public function testInvalidAuthMissingCredentials()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/auth_failed.xml');
-        $instance->getTransaction('placeholder');
+        $this->getInstanceForRequestFixture('responses/auth_failed.xml')->getTransaction('placeholder');
     }
 
     /**
@@ -45,8 +45,7 @@ class ApiTest extends TestCase
      */
     public function testInvalidAuthInvalidToken()
     {
-        $instance = $this->getInstanceForRequestFixture('responses/auth_failed2.xml');
-        $instance->getTransaction('placeholder');
+        $this->getInstanceForRequestFixture('responses/auth_failed2.xml')->getTransaction('placeholder');
     }
 
     public function testGetInfo()
@@ -150,14 +149,29 @@ class ApiTest extends TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage Cancelled by customer
+     * @expectedExceptionMessage Cancelled by customer.
      * @expectedExceptionCode 17
      */
     public function testErrorThrowsCorrectException()
     {
+        $this->getInstanceForRequestFixture('responses/user_cancelled.xml')->getTransaction('placeholder');
+    }
+
+    public function testErrorThrowsCorrectException2()
+    {
         $instance = $this->getInstanceForRequestFixture('responses/user_cancelled.xml');
-        /** @var Query $trans */
-        $instance->getTransaction('placeholder');
+
+        try {
+            $instance->getTransaction('placeholder');
+        } catch (Exception $e) {
+            Assert::assertEquals(17, $e->getCode(), 'Invalid code!');
+            Assert::assertEquals('Cancelled by customer.', $e->getMessage(), 'Invalid message!');
+            Assert::assertEquals('Terminal', $e->getSource(), 'Invalid source!');
+
+            return;
+        }
+
+        throw new \Exception("Shouldn't get here!");
     }
 
     /**
