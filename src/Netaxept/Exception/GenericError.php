@@ -11,14 +11,8 @@
 
 declare(strict_types=1);
 
-namespace FDM\Netaxept\Response;
+namespace FDM\Netaxept\Exception;
 
-interface RegisterInterface
+class GenericError extends Exception
 {
-    /**
-     * Should return the transactionId contained in the XML response.
-     *
-     * @return string
-     */
-    public function getTransactionId(): string;
 }

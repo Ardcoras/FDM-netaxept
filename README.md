@@ -18,9 +18,8 @@ composer require fdm/netaxept
 ```php
 <?php
 require 'vendor/autoload.php';
-// Instantiate the API with the required merchantId, token, and a response factory
-$responseFactory = new \FDM\Netaxept\Response\Factory();
-$api = new \FDM\Netaxept\Api('merchantId', 'token', $responseFactory);
+// Instantiate the API with the required merchantId and token
+$api = new \FDM\Netaxept\Api('merchantId', 'token');
 
 // Get a response object from the API, in this example, get a transaction.
 $response = $api->getTransaction('transactionId');
@@ -30,7 +29,7 @@ $status = $response->getTransactionStatus();
 print_r($response->getOrderInformation());
 ```
 
-## Customising the response factory.
+## Customising the Response factory.
 
 The provided response classes only have methods for exposing the most common data. If
 you have a requirement to retrieve other data, then you simply create a response class
@@ -57,6 +56,23 @@ $api = new Api('merch', 'token', $responseFactory);
 $response = $api->getTransaction('transactionid');
 $finished = $response->getQueryFinished(); 
 ```
+
+## Customising the Exception factory.
+
+As with the Response factory, you can also provide your own factory class that will deal with
+raising the proper exceptions, allowing you to customise exception handling.
+```php
+// In your file that instantiates the API object
+use FDM\Netaxept\Exception\Factory;
+$exceptionFactory = new Factory(Acme\Netaxept\Exception\MyCustomException::class ... [etc]);
+$api = new Api('merch', 'token', null, $exceptionFactory);
+try {
+    $response = $api->getTransaction('transactionid');
+} catch (MyCustomException $e) {
+    $e->doSomethingCustom();
+} 
+```
+See the [exception factory](src/Netaxept/Exception/Factory.php) constructor for the supported exceptions.
 
 ## Contributing
 
