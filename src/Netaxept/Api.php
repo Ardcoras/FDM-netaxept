@@ -88,7 +88,7 @@ class Api
      *
      * @return QueryInterface
      */
-    public function getTransaction($transactionId)
+    public function getTransaction($transactionId): QueryInterface
     {
         $uri = $this->getUri('query', $this->getParameters(['transactionId' => $transactionId]));
         /** @var QueryInterface $response */
@@ -105,12 +105,12 @@ class Api
      *
      * @param array $transactionData
      *
-     * @return QueryInterface
+     * @return RegisterInterface
      */
-    public function registerTransaction(array $transactionData)
+    public function registerTransaction(array $transactionData): RegisterInterface
     {
         $uri = $this->getUri('register', $this->getParameters($transactionData));
-        /** @var QueryInterface $response */
+        /** @var RegisterInterface $response */
         $response = $this->performRequest((string) $uri);
 
         Assert::isInstanceOf($response, RegisterInterface::class, 'Invalid response');

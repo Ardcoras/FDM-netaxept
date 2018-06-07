@@ -15,4 +15,13 @@ namespace FDM\Netaxept\Response;
 
 class Register extends AbstractResponse implements RegisterInterface
 {
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getTransactionId(): string
+    {
+        return (string) $this->xml->TransactionId;
+    }
 }

@@ -15,4 +15,10 @@ namespace FDM\Netaxept\Response;
 
 interface RegisterInterface
 {
+    /**
+     * Should return the transactionId contained in the XML response.
+     *
+     * @return string
+     */
+    public function getTransactionId(): string;
 }
