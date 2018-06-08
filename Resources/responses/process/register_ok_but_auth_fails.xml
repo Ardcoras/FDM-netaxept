@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Exception xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Error xsi:type="BBSException">
+        <Message>Unable to auth</Message>
+        <Result>
+            <IssuerId>3</IssuerId>
+            <ResponseCode>99</ResponseCode>
+            <ResponseText>Auth Reg Comp Failure)</ResponseText>
+            <ResponseSource>Netaxept</ResponseSource>
+            <TransactionId>fdm-medlem-0000026</TransactionId>
+            <ExecutionTime>2018-06-08T13:11:40.5696656+02:00</ExecutionTime>
+            <MerchantId>200970</MerchantId>
+            <ExtraInfoOut>2030010</ExtraInfoOut>
+            <MaskedPan />
+            <MessageId>09c8eceacd4f4b4fb2fe74be1513524c</MessageId>
+        </Result>
+    </Error>
+</Exception>

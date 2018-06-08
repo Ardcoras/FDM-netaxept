@@ -17,6 +17,7 @@ use FDM\Netaxept\Exception\Exception;
 use FDM\Netaxept\Exception\Factory as ExceptionFactory;
 use FDM\Netaxept\Response\ErrorInterface;
 use FDM\Netaxept\Response\Factory as ResponseFactory;
+use FDM\Netaxept\Response\ProcessInterface;
 use FDM\Netaxept\Response\QueryInterface;
 use FDM\Netaxept\Response\RegisterInterface;
 use GuzzleHttp\Client;
@@ -114,6 +115,24 @@ class Api
         $response = $this->performRequest((string) $uri);
 
         Assert::isInstanceOf($response, RegisterInterface::class, 'Invalid response');
+
+        return $response;
+    }
+
+    /**
+     * Processes a transaction
+     *
+     * @param array $transactionData
+     *
+     * @return ProcessInterface
+     */
+    public function processTransaction(array $transactionData): ProcessInterface
+    {
+        $uri = $this->getUri('process', $this->getParameters($transactionData));
+        /** @var ProcessInterface $response */
+        $response = $this->performRequest((string) $uri);
+
+        Assert::isInstanceOf($response, ProcessInterface::class, 'Invalid response');
 
         return $response;
     }

@@ -15,4 +15,13 @@ namespace FDM\Netaxept\Response;
 
 class Process extends AbstractResponse implements ProcessInterface
 {
+    public function getStatus(): string
+    {
+        return (string) $this->xml->ResponseCode;
+    }
+
+    public function getOperation(): string
+    {
+        return (string) $this->xml->Operation;
+    }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProcessResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <BatchNumber>310</BatchNumber>
+    <ExecutionTime>2018-06-08T12:45:49.7661681+02:00</ExecutionTime>
+    <MerchantId>80085</MerchantId>
+    <Operation>CREDIT</Operation>
+    <ResponseCode>OK</ResponseCode>
+    <TransactionId>fdm-medlem-0000024</TransactionId>
+</ProcessResponse>

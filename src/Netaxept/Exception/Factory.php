@@ -54,6 +54,6 @@ class Factory
 
         $exceptionClass = $this->classMap[$exceptionType];
 
-        throw new $exceptionClass((string) $xml->Error->Message);
+        throw new $exceptionClass($xml);
     }
 }

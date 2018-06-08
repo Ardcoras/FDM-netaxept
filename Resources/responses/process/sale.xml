@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProcessResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <AuthorizationId>130833</AuthorizationId>
+    <BatchNumber>310</BatchNumber>
+    <ExecutionTime>2018-06-08T13:08:33.5645085+02:00</ExecutionTime>
+    <MerchantId>12000353</MerchantId>
+    <Operation>SALE</Operation>
+    <ResponseCode>OK</ResponseCode>
+    <TransactionId>fdm-medlem-0000025</TransactionId>
+</ProcessResponse>

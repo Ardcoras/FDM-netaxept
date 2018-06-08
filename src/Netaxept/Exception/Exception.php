@@ -15,4 +15,9 @@ namespace FDM\Netaxept\Exception;
 
 class Exception extends \Exception
 {
+    public function __construct(\SimpleXMLElement $xml)
+    {
+        $message = (string) $xml->Error->Message;
+        parent::__construct($message);
+    }
 }
