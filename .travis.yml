@@ -17,3 +17,7 @@ script:
   - make ecs
   - make phpstan
   - make test
+  - php code-coverage.php clover.xml 80
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

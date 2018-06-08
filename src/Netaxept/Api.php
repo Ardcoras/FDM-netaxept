@@ -13,8 +13,13 @@ declare(strict_types=1);
 
 namespace FDM\Netaxept;
 
-use FDM\Netaxept\Response\Factory;
+use FDM\Netaxept\Exception\Exception;
+use FDM\Netaxept\Exception\Factory as ExceptionFactory;
+use FDM\Netaxept\Response\ErrorInterface;
+use FDM\Netaxept\Response\Factory as ResponseFactory;
+use FDM\Netaxept\Response\ProcessInterface;
 use FDM\Netaxept\Response\QueryInterface;
+use FDM\Netaxept\Response\RegisterInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Uri;
 use Webmozart\Assert\Assert;
@@ -42,9 +47,14 @@ class Api
     protected $token;
 
     /**
-     * @var Factory
+     * @var ResponseFactory
      */
     protected $responseFactory;
+
+    /**
+     * @var ExceptionFactory
+     */
+    protected $exceptionFactory;
 
     /**
      * @var Client
@@ -59,13 +69,15 @@ class Api
     public function __construct(
         string $merchantId,
         string $token,
-        Factory $responseFactory,
+        ResponseFactory $responseFactory = null,
+        ExceptionFactory $exceptionFactory = null,
         Client $client = null,
         bool $sandbox = false
     ) {
         $this->merchantId = $merchantId;
         $this->token = $token;
-        $this->responseFactory = $responseFactory;
+        $this->responseFactory = $responseFactory ? $responseFactory : new ResponseFactory();
+        $this->exceptionFactory = $exceptionFactory ? $exceptionFactory : new ExceptionFactory();
         $this->client = $client ? $client : new Client();
         $this->sandbox = $sandbox;
     }
@@ -77,13 +89,50 @@ class Api
      *
      * @return QueryInterface
      */
-    public function getTransaction($transactionId)
+    public function getTransaction($transactionId): QueryInterface
     {
         $uri = $this->getUri('query', $this->getParameters(['transactionId' => $transactionId]));
         /** @var QueryInterface $response */
         $response = $this->performRequest((string) $uri);
 
         Assert::isInstanceOf($response, QueryInterface::class, 'Invalid response');
+        Assert::isInstanceOf($response, ErrorInterface::class, 'Invalid response');
+
+        return $response;
+    }
+
+    /**
+     * Registers a transaction
+     *
+     * @param array $transactionData
+     *
+     * @return RegisterInterface
+     */
+    public function registerTransaction(array $transactionData): RegisterInterface
+    {
+        $uri = $this->getUri('register', $this->getParameters($transactionData));
+        /** @var RegisterInterface $response */
+        $response = $this->performRequest((string) $uri);
+
+        Assert::isInstanceOf($response, RegisterInterface::class, 'Invalid response');
+
+        return $response;
+    }
+
+    /**
+     * Processes a transaction
+     *
+     * @param array $transactionData
+     *
+     * @return ProcessInterface
+     */
+    public function processTransaction(array $transactionData): ProcessInterface
+    {
+        $uri = $this->getUri('process', $this->getParameters($transactionData));
+        /** @var ProcessInterface $response */
+        $response = $this->performRequest((string) $uri);
+
+        Assert::isInstanceOf($response, ProcessInterface::class, 'Invalid response');
 
         return $response;
     }
@@ -104,7 +153,7 @@ class Api
         $content = $httpResponse->getBody()->getContents();
         $xml = simplexml_load_string($content);
 
-        Assert::notEq($xml->getName(), 'Exception', $xml->Error->Message);
+        $this->exceptionOnError($xml);
 
         return $this->responseFactory->getResponse($xml);
     }
@@ -146,5 +195,17 @@ class Api
         }
 
         return new Uri($uri);
+    }
+
+    /**
+     * @param \SimpleXMLElement $xml
+     *
+     * @throws Exception
+     */
+    protected function exceptionOnError(\SimpleXMLElement $xml)
+    {
+        if ($xml->getName() == 'Exception') {
+            throw $this->exceptionFactory->getException($xml);
+        }
     }
 }

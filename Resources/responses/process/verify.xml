@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProcessResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <AuthorizationId>103851</AuthorizationId>
+    <ExecutionTime>2018-06-08T10:38:51.0037445+02:00</ExecutionTime>
+    <MerchantId>80085</MerchantId>
+    <Operation>VERIFY</Operation>
+    <ResponseCode>OK</ResponseCode>
+    <TransactionId>fdm-medlem-0000022</TransactionId>
+</ProcessResponse>

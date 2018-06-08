@@ -56,3 +56,4 @@ phpstan:
 test: ## Run tests
 test:
 	@vendor/bin/phpunit
+	@php code-coverage.php clover.xml 80

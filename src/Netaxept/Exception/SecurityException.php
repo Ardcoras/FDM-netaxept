@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace FDM\Netaxept\Response;
+namespace FDM\Netaxept\Exception;
 
-interface ProcessInterface
+class SecurityException extends Exception
 {
-    public function getStatus(): string;
-
-    public function getOperation(): string;
 }

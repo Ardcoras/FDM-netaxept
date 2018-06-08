@@ -11,11 +11,13 @@
 
 declare(strict_types=1);
 
-namespace FDM\Netaxept\Response;
+namespace FDM\Netaxept\Exception;
 
-interface ProcessInterface
+class Exception extends \Exception
 {
-    public function getStatus(): string;
-
-    public function getOperation(): string;
+    public function __construct(\SimpleXMLElement $xml)
+    {
+        $message = (string) $xml->Error->Message;
+        parent::__construct($message);
+    }
 }
