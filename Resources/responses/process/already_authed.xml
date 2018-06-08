@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Exception xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Error xsi:type="BBSException">
+        <Message>Unable to auth</Message>
+        <Result>
+            <IssuerId>50</IssuerId>
+            <ResponseCode>98</ResponseCode>
+            <ResponseText>Transaction already processed</ResponseText>
+            <ResponseSource>Netaxept</ResponseSource>
+            <TransactionId>fdm-medlem-0000022</TransactionId>
+            <ExecutionTime>2018-06-08T12:01:02.7705311+02:00</ExecutionTime>
+            <MerchantId>200970</MerchantId>
+            <ExtraInfoOut>2030010</ExtraInfoOut>
+            <MaskedPan />
+            <MessageId>0aa8e5472ca64707b036121ba22525b7</MessageId>
+        </Result>
+    </Error>
+</Exception>

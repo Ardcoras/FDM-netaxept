@@ -15,4 +15,7 @@ namespace FDM\Netaxept\Response;
 
 interface ProcessInterface
 {
+    public function getStatus(): string;
+
+    public function getOperation(): string;
 }
