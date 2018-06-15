@@ -24,16 +24,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testMissingParameters()
     {
-        $this->getInstanceForRequestFixture('responses/process/no_parameters.xml')->processTransaction([]);
-    }
-
-    /**
-     * @expectedException \FDM\Netaxept\Exception\ValidationException
-     * @expectedExceptionMessage Missing operation
-     */
-    public function testMissingOperation()
-    {
-        $this->getInstanceForRequestFixture('responses/process/missing_operation.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/no_parameters.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
