@@ -207,9 +207,9 @@ class Api
      * @param string $endpoint
      * @param array $parameters
      *
-     * @return \Psr\Http\Message\UriInterface
+     * @return Uri
      */
-    protected function getUri(string $endpoint, array $parameters = [])
+    protected function getUri(string $endpoint, array $parameters = []): Uri
     {
         Assert::keyExists(self::ENDPOINTS, $endpoint, "Named endpoint {$endpoint} is unknown.");
 

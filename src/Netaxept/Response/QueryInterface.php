@@ -15,6 +15,8 @@ namespace FDM\Netaxept\Response;
 
 interface QueryInterface
 {
+    const STATUS_UNREGISTERED = 'unregistered';
+
     const STATUS_PENDING = 'pending';
 
     const STATUS_AUTHORIZED = 'authorized';
@@ -24,6 +26,8 @@ interface QueryInterface
     const STATUS_CANCELLED = 'cancelled';
 
     const STATUS_CREDITED = 'credited';
+
+    const STATUS_FAILED = 'failed';
 
     /**
      * Should determine the transaction status based on the data available in the response, which should be one of the
