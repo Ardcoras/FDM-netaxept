@@ -46,6 +46,7 @@ class Api
         'register' => 'Netaxept/Register.aspx',
         'process' => 'Netaxept/Process.aspx',
         'query' => 'Netaxept/Query.aspx',
+        'terminal' => 'Terminal/Default.aspx'
     ];
 
     /**
@@ -147,6 +148,19 @@ class Api
         Assert::isInstanceOf($response, ProcessInterface::class, 'Invalid response');
 
         return $response;
+    }
+
+    /**
+     * Given the transaction ID, returns a URI that the user should be redirected to in order to enter their card
+     * details for that transaction.
+     *
+     * @param string $transactionId
+     * @return Uri
+     */
+    public function getTerminalUri(string $transactionId): Uri
+    {
+        $uri = $this->getUri('terminal', ['merchantId' => $this->merchantId, 'transactionId' => $transactionId]);
+        return $uri;
     }
 
     /**
