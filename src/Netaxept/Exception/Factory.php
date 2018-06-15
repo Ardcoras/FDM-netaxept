@@ -52,8 +52,15 @@ class Factory
         $exceptionType = (string) $xml->Error->attributes('xsi', true)->type;
 
         switch ($xml->Error->Message) {
-            case 'Unable to find transaction' : $exceptionType = 'TransactionNotFoundException'; break;
-            case 'You cannot run capture on a transaction that never is authorized' : $exceptionType = 'TransactionNotAuthorizedException'; break;
+            case 'Unable to find transaction':
+                $exceptionType = 'TransactionNotFoundException';
+
+            break;
+
+            case 'You cannot run capture on a transaction that never is authorized':
+                $exceptionType = 'TransactionNotAuthorizedException';
+
+            break;
         }
 
         Assert::notEmpty(

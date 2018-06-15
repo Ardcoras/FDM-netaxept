@@ -46,7 +46,7 @@ class Api
         'register' => 'Netaxept/Register.aspx',
         'process' => 'Netaxept/Process.aspx',
         'query' => 'Netaxept/Query.aspx',
-        'terminal' => 'Terminal/Default.aspx'
+        'terminal' => 'Terminal/Default.aspx',
     ];
 
     /**
@@ -155,11 +155,13 @@ class Api
      * details for that transaction.
      *
      * @param string $transactionId
+     *
      * @return Uri
      */
     public function getTerminalUri(string $transactionId): Uri
     {
         $uri = $this->getUri('terminal', ['merchantId' => $this->merchantId, 'transactionId' => $transactionId]);
+
         return $uri;
     }
 
