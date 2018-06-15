@@ -42,7 +42,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testUnknownOperation()
     {
-        $this->getInstanceForRequestFixture('responses/process/unknown_operation.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/unknown_operation.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
@@ -51,7 +52,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testInvalidTransactionId()
     {
-        $this->getInstanceForRequestFixture('responses/process/invalid_transaction_id.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/invalid_transaction_id.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
@@ -64,7 +66,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testThatAuthingANonCompletedPaymentFails()
     {
-        $this->getInstanceForRequestFixture('responses/process/no_credit_card_details.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/no_credit_card_details.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
@@ -73,7 +76,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testThatCapturingWithoutAuthFails()
     {
-        $this->getInstanceForRequestFixture('responses/process/capture_without_auth.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/capture_without_auth.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
@@ -82,7 +86,8 @@ class ApiProcessTest extends ApiTest
      */
     public function testThatCreditingWithoutCapturingFails()
     {
-        $this->getInstanceForRequestFixture('responses/process/credit_without_capture.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/credit_without_capture.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     /**
@@ -91,13 +96,15 @@ class ApiProcessTest extends ApiTest
      */
     public function testThatAttemptingToCancelANonAuthedTransactionFails()
     {
-        $this->getInstanceForRequestFixture('responses/process/cancel_non_authed.xml')->processTransaction([]);
+        $this->getInstanceForRequestFixture('responses/process/cancel_non_authed.xml')
+            ->processTransaction([], 'required but unused');
     }
 
     public function testThatAuthingAlreadyAuthedFails()
     {
         try {
-            $this->getInstanceForRequestFixture('responses/process/already_authed.xml')->processTransaction([]);
+            $this->getInstanceForRequestFixture('responses/process/already_authed.xml')
+                ->processTransaction([], 'required but unused');
         } catch (BBSException $e) {
             Assert::assertEquals('Unable to auth', $e->getMessage());
             Assert::assertEquals([
@@ -122,7 +129,8 @@ class ApiProcessTest extends ApiTest
     public function testThatRegisterWorksButAuthFailsOnATestCard()
     {
         try {
-            $this->getInstanceForRequestFixture('responses/process/register_ok_but_auth_fails.xml')->processTransaction([]);
+            $this->getInstanceForRequestFixture('responses/process/register_ok_but_auth_fails.xml')
+                ->processTransaction([], 'required but unused');
         } catch (BBSException $e) {
             Assert::assertEquals('Unable to auth', $e->getMessage());
             Assert::assertEquals([
@@ -146,42 +154,48 @@ class ApiProcessTest extends ApiTest
 
     public function testThatVerifyingSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/verify.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/verify.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('VERIFY', $response->getOperation(), 'Unexpected operation!');
     }
 
     public function testThatAuthSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/auth.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/auth.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('AUTH', $response->getOperation(), 'Unexpected operation!');
     }
 
     public function testThatCancelSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/cancel.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/cancel.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('ANNUL', $response->getOperation(), 'Unexpected operation!');
     }
 
     public function testThatCaptureSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/capture.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/capture.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('CAPTURE', $response->getOperation(), 'Unexpected operation!');
     }
 
     public function testThatCreditSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/credit.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/credit.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('CREDIT', $response->getOperation(), 'Unexpected operation!');
     }
 
     public function testThatSaleSucceeds()
     {
-        $response = $this->getInstanceForRequestFixture('responses/process/sale.xml')->processTransaction([]);
+        $response = $this->getInstanceForRequestFixture('responses/process/sale.xml')
+            ->processTransaction([], 'required but unused');
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('SALE', $response->getOperation(), 'Unexpected operation!');
     }

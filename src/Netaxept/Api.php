@@ -30,6 +30,18 @@ class Api
 
     const SANDBOX_URL = 'https://test.epayment.nets.eu/';
 
+    const OPERATION_AUTH = 'auth';
+
+    const OPERATION_VERIFY = 'verify';
+
+    const OPERATION_SALE = 'sale';
+
+    const OPERATION_CAPTURE = 'capture';
+
+    const OPERATION_REFUND = 'credit';
+
+    const OPERATION_CANCEL = 'annul';
+
     const ENDPOINTS = [
         'register' => 'Netaxept/Register.aspx',
         'process' => 'Netaxept/Process.aspx',
@@ -126,9 +138,9 @@ class Api
      *
      * @return ProcessInterface
      */
-    public function processTransaction(array $transactionData): ProcessInterface
+    public function processTransaction(array $transactionData, string $operation): ProcessInterface
     {
-        $uri = $this->getUri('process', $this->getParameters($transactionData));
+        $uri = $this->getUri('process', $this->getParameters($transactionData + ['operation' => $operation]));
         /** @var ProcessInterface $response */
         $response = $this->performRequest((string) $uri);
 
