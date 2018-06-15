@@ -121,7 +121,6 @@ services:
     PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer: {}
     PhpCsFixer\Fixer\Whitespace\LineEndingFixer: {}
     PhpCsFixer\Fixer\Whitespace\NoExtraConsecutiveBlankLinesFixer:
-        - break
         - case
         - continue
         - curly_brace_block

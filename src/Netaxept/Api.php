@@ -30,10 +30,23 @@ class Api
 
     const SANDBOX_URL = 'https://test.epayment.nets.eu/';
 
+    const OPERATION_AUTH = 'auth';
+
+    const OPERATION_VERIFY = 'verify';
+
+    const OPERATION_SALE = 'sale';
+
+    const OPERATION_CAPTURE = 'capture';
+
+    const OPERATION_REFUND = 'credit';
+
+    const OPERATION_CANCEL = 'annul';
+
     const ENDPOINTS = [
         'register' => 'Netaxept/Register.aspx',
         'process' => 'Netaxept/Process.aspx',
         'query' => 'Netaxept/Query.aspx',
+        'terminal' => 'Terminal/Default.aspx',
     ];
 
     /**
@@ -126,15 +139,30 @@ class Api
      *
      * @return ProcessInterface
      */
-    public function processTransaction(array $transactionData): ProcessInterface
+    public function processTransaction(array $transactionData, string $operation): ProcessInterface
     {
-        $uri = $this->getUri('process', $this->getParameters($transactionData));
+        $uri = $this->getUri('process', $this->getParameters($transactionData + ['operation' => $operation]));
         /** @var ProcessInterface $response */
         $response = $this->performRequest((string) $uri);
 
         Assert::isInstanceOf($response, ProcessInterface::class, 'Invalid response');
 
         return $response;
+    }
+
+    /**
+     * Given the transaction ID, returns a URI that the user should be redirected to in order to enter their card
+     * details for that transaction.
+     *
+     * @param string $transactionId
+     *
+     * @return Uri
+     */
+    public function getTerminalUri(string $transactionId): Uri
+    {
+        $uri = $this->getUri('terminal', ['merchantId' => $this->merchantId, 'transactionId' => $transactionId]);
+
+        return $uri;
     }
 
     /**
@@ -181,9 +209,9 @@ class Api
      * @param string $endpoint
      * @param array $parameters
      *
-     * @return \Psr\Http\Message\UriInterface
+     * @return Uri
      */
-    protected function getUri(string $endpoint, array $parameters = [])
+    protected function getUri(string $endpoint, array $parameters = []): Uri
     {
         Assert::keyExists(self::ENDPOINTS, $endpoint, "Named endpoint {$endpoint} is unknown.");
 
