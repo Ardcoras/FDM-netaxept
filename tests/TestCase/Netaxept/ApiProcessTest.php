@@ -46,7 +46,7 @@ class ApiProcessTest extends ApiTest
     }
 
     /**
-     * @expectedException \FDM\Netaxept\Exception\GenericError
+     * @expectedException \FDM\Netaxept\Exception\TransactionNotFoundException
      * @expectedExceptionMessage Unable to find transaction
      */
     public function testInvalidTransactionId()
@@ -68,7 +68,7 @@ class ApiProcessTest extends ApiTest
     }
 
     /**
-     * @expectedException \FDM\Netaxept\Exception\GenericError
+     * @expectedException \FDM\Netaxept\Exception\TransactionNotAuthorizedException
      * @expectedExceptionMessage You cannot run capture on a transaction that never is authorized
      */
     public function testThatCapturingWithoutAuthFails()
