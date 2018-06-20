@@ -141,7 +141,13 @@ class Api
      */
     public function processTransaction(array $transactionData, string $operation): ProcessInterface
     {
-        $uri = $this->getUri('process', $this->getParameters($transactionData + ['operation' => $operation]));
+        // When hitting the process endpoint, we only need the transactionId and operation key/value pairs, and
+        // optionally the transactionAmount if we are capturing a portion of the total amount.
+        $transactionData = array_filter($transactionData + ['operation' => $operation], function ($k) {
+            return in_array($k, ['transactionId', 'operation', 'transactionAmount']);
+        }, ARRAY_FILTER_USE_KEY);
+
+        $uri = $this->getUri('process', $this->getParameters($transactionData));
         /** @var ProcessInterface $response */
         $response = $this->performRequest((string) $uri);
 
