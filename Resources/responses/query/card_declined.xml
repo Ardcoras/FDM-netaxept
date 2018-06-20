@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PaymentInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MerchantId>1212121212</MerchantId>
+    <QueryFinished>2018-06-20T14:34:50.9677815+02:00</QueryFinished>
+    <TransactionId>bd4ae2b322a94d2199fb950a432f08cd</TransactionId>
+    <AuthenticationInformation />
+    <AvtaleGiroInformation />
+    <CardInformation>
+        <ExpiryDate>2401</ExpiryDate>
+        <Issuer>Visa</Issuer>
+        <IssuerCountry>NO</IssuerCountry>
+        <MaskedPAN>492500******0087</MaskedPAN>
+        <PaymentMethod>Visa</PaymentMethod>
+        <IssuerId>3</IssuerId>
+    </CardInformation>
+    <CustomerInformation>
+        <Address1 />
+        <Address2 />
+        <CompanyName />
+        <CompanyRegistrationNumber />
+        <CustomerNumber />
+        <Country />
+        <Email />
+        <FirstName />
+        <IP>87.48.129.98</IP>
+        <LastName />
+        <PhoneNumber />
+        <Postcode />
+        <SocialSecurityNumber />
+        <Town />
+    </CustomerInformation>
+    <Error>
+        <DateTime>2018-06-18T13:31:41.293</DateTime>
+        <Operation>Auth</Operation>
+        <ResponseCode>99</ResponseCode>
+        <ResponseSource>Netaxept</ResponseSource>
+        <ResponseText>Auth Reg Comp Failure)</ResponseText>
+    </Error>
+    <ErrorLog>
+        <PaymentError>
+            <DateTime>2018-06-18T13:31:41.293</DateTime>
+            <Operation>Auth</Operation>
+            <ResponseCode>99</ResponseCode>
+            <ResponseSource>Netaxept</ResponseSource>
+            <ResponseText>Auth Reg Comp Failure)</ResponseText>
+        </PaymentError>
+    </ErrorLog>
+    <History>
+        <TransactionLogLine>
+            <DateTime>2018-06-18T13:31:18.64</DateTime>
+            <Description>Test payment</Description>
+            <Operation>Register</Operation>
+            <TransactionReconRef />
+        </TransactionLogLine>
+    </History>
+    <OrderInformation>
+        <Amount>29995</Amount>
+        <Currency>DKK</Currency>
+        <Fee>0</Fee>
+        <OrderDescription> </OrderDescription>
+        <OrderNumber>80096</OrderNumber>
+        <Timestamp>2018-06-18T13:31:18.64</Timestamp>
+        <Total>29995</Total>
+        <RoundingAmount>0</RoundingAmount>
+    </OrderInformation>
+    <SecurityInformation>
+        <CustomerIPCountry>DK</CustomerIPCountry>
+        <IPCountryMatchesIssuingCountry>false</IPCountryMatchesIssuingCountry>
+    </SecurityInformation>
+    <Summary>
+        <AmountCaptured>0</AmountCaptured>
+        <AmountCredited>0</AmountCredited>
+        <Annuled>false</Annuled>
+        <Annulled>false</Annulled>
+        <Authorized>false</Authorized>
+    </Summary>
+    <TerminalInformation>
+        <Browser>Chrome-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36</Browser>
+        <CustomerEntered>2018-06-18T13:31:19.013</CustomerEntered>
+        <CustomerRedirected>2018-06-18T13:31:39.747</CustomerRedirected>
+    </TerminalInformation>
+</PaymentInfo>

@@ -129,7 +129,7 @@ class ApiQueryTest extends ApiTest
         Assert::assertEquals(535800, $trans->getOrderTotal());
     }
 
-    public function testErrorPresentAndCorrect()
+    public function testUserCancelled()
     {
         /** @var Query $trans */
         $trans = $this->getInstanceForRequestFixture('responses/query/user_cancelled.xml')->getTransaction('placeholder');
@@ -138,9 +138,28 @@ class ApiQueryTest extends ApiTest
         Assert::assertTrue($trans->hasError(), 'Response should contain error!');
         Assert::assertEquals([
             'dateTime' => '2018-04-05T10:58:45.933',
-            'code' => '17',
-            'source' => 'Terminal',
-            'text' => 'Cancelled by customer.',
+            'operation' => 'Terminal',
+            'responseCode' => '17',
+            'responseSource' => 'Terminal',
+            'responseText' => 'Cancelled by customer.',
         ], $trans->getError(), 'Incorrect error response received.');
+        Assert::assertEquals(QueryInterface::STATUS_CANCELLED, $trans->getTransactionStatus());
+    }
+
+    public function testCardDeclined()
+    {
+        /** @var Query $trans */
+        $trans = $this->getInstanceForRequestFixture('responses/query/card_declined.xml')->getTransaction('placeholder');
+
+        Assert::assertInstanceOf(Query::class, $trans);
+        Assert::assertTrue($trans->hasError(), 'Response should contain error!');
+        Assert::assertEquals([
+            'dateTime' => '2018-06-18T13:31:41.293',
+            'operation' => 'Auth',
+            'responseCode' => '99',
+            'responseSource' => 'Netaxept',
+            'responseText' => 'Auth Reg Comp Failure)',
+        ], $trans->getError(), 'Incorrect error response received.');
+        Assert::assertEquals(QueryInterface::STATUS_FAILED, $trans->getTransactionStatus());
     }
 }
