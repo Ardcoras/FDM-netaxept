@@ -36,6 +36,7 @@ class AbstractResponse implements ErrorInterface
         foreach ($this->xml->Error->children() as $tag) {
             $result[lcfirst($tag->getName())] = (string) $tag;
         }
+
         return $result;
     }
 }
