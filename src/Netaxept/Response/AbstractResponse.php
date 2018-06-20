@@ -32,11 +32,10 @@ class AbstractResponse implements ErrorInterface
 
     public function getError(): array
     {
-        return [
-            'dateTime' => (string) $this->xml->Error->DateTime,
-            'code' => (string) $this->xml->Error->ResponseCode,
-            'source' => (string) $this->xml->Error->ResponseSource,
-            'text' => (string) $this->xml->Error->ResponseText,
-        ];
+        $result = [];
+        foreach ($this->xml->Error->children() as $tag) {
+            $result[lcfirst($tag->getName())] = (string) $tag;
+        }
+        return $result;
     }
 }

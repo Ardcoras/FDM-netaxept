@@ -22,6 +22,21 @@ class Query extends AbstractResponse implements QueryInterface, ErrorInterface
      */
     public function getTransactionStatus(): string
     {
+        // If the user cancelled in the terminal window, then we need to detect that.
+        if ($this->hasError()) {
+            $error = $this->getError();
+            if (
+                !empty($error['operation']) && $error['operation'] === 'Terminal' &&
+                !empty($error['responseCode']) && $error['responseCode'] === '17' &&
+                !empty($error['responseSource']) && ($error['responseSource'] === 'Terminal' || $error['responseSource'] === '05') &&
+                !empty($error['responseText']) && $error['responseText'] === 'Cancelled by customer.'
+            ) {
+                return QueryInterface::STATUS_CANCELLED;
+            }
+
+            return QueryInterface::STATUS_FAILED;
+        }
+
         $summary = $this->getSummary();
 
         // If the cancelled flag is set, then it can no longer be considered to be authed, captured or credited.
