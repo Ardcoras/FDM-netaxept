@@ -28,6 +28,15 @@ class ApiRegisterTest extends ApiTest
 
     /**
      * @expectedException \FDM\Netaxept\Exception\ValidationException
+     * @expectedExceptionMessage Missing parameter: 'Order Number'
+     */
+    public function testMissingOrderIdButWithConvenienceMethod()
+    {
+        $this->getInstanceForRequestFixture('responses/register/missing_order_number.xml')->register([]);
+    }
+
+    /**
+     * @expectedException \FDM\Netaxept\Exception\ValidationException
      * @expectedExceptionMessage Missing parameter: 'Amount'
      */
     public function testMissingAmount()

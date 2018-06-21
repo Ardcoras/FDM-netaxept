@@ -152,10 +152,26 @@ class ApiProcessTest extends ApiTest
         Assert::assertEquals('VERIFY', $response->getOperation(), 'Unexpected operation!');
     }
 
+    public function testThatVerifyingSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/verify.xml')
+            ->verify([]);
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('VERIFY', $response->getOperation(), 'Unexpected operation!');
+    }
+
     public function testThatAuthSucceeds()
     {
         $response = $this->getInstanceForRequestFixture('responses/process/auth.xml')
             ->processTransaction([], 'required but unused');
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('AUTH', $response->getOperation(), 'Unexpected operation!');
+    }
+
+    public function testThatAuthSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/auth.xml')
+            ->authorize([]);
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('AUTH', $response->getOperation(), 'Unexpected operation!');
     }
@@ -168,6 +184,14 @@ class ApiProcessTest extends ApiTest
         Assert::assertEquals('ANNUL', $response->getOperation(), 'Unexpected operation!');
     }
 
+    public function testThatCancelSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/cancel.xml')
+            ->cancel([]);
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('ANNUL', $response->getOperation(), 'Unexpected operation!');
+    }
+
     public function testThatCaptureSucceeds()
     {
         $response = $this->getInstanceForRequestFixture('responses/process/capture.xml')
@@ -176,10 +200,26 @@ class ApiProcessTest extends ApiTest
         Assert::assertEquals('CAPTURE', $response->getOperation(), 'Unexpected operation!');
     }
 
-    public function testThatCreditSucceeds()
+    public function testThatCaptureSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/capture.xml')
+            ->capture([]);
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('CAPTURE', $response->getOperation(), 'Unexpected operation!');
+    }
+
+    public function testThatRefundSucceeds()
     {
         $response = $this->getInstanceForRequestFixture('responses/process/credit.xml')
             ->processTransaction([], 'required but unused');
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('CREDIT', $response->getOperation(), 'Unexpected operation!');
+    }
+
+    public function testThatRefundSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/credit.xml')
+            ->refund([]);
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('CREDIT', $response->getOperation(), 'Unexpected operation!');
     }
@@ -188,6 +228,14 @@ class ApiProcessTest extends ApiTest
     {
         $response = $this->getInstanceForRequestFixture('responses/process/sale.xml')
             ->processTransaction([], 'required but unused');
+        Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
+        Assert::assertEquals('SALE', $response->getOperation(), 'Unexpected operation!');
+    }
+
+    public function testThatSaleSucceedsWithConvenienceMethod()
+    {
+        $response = $this->getInstanceForRequestFixture('responses/process/sale.xml')
+            ->sale([]);
         Assert::assertEquals('OK', $response->getStatus(), 'Unexpected status!');
         Assert::assertEquals('SALE', $response->getOperation(), 'Unexpected operation!');
     }
