@@ -160,6 +160,7 @@ class Api
      * Register a transaction.
      *
      * @param array $transactionData
+     *
      * @return RegisterInterface
      */
     public function register(array $transactionData): RegisterInterface
@@ -171,6 +172,7 @@ class Api
      * Verify a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function verify(array $transactionData): ProcessInterface
@@ -182,6 +184,7 @@ class Api
      * Authorize a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function authorize(array $transactionData): ProcessInterface
@@ -193,6 +196,7 @@ class Api
      * Cancel a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function cancel(array $transactionData): ProcessInterface
@@ -204,6 +208,7 @@ class Api
      * Capture a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function capture(array $transactionData): ProcessInterface
@@ -215,6 +220,7 @@ class Api
      * Authorize and capture a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function sale(array $transactionData): ProcessInterface
@@ -226,6 +232,7 @@ class Api
      * Refunds a transaction.
      *
      * @param array $transactionData
+     *
      * @return ProcessInterface
      */
     public function refund(array $transactionData): ProcessInterface
