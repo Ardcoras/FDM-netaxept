@@ -157,6 +157,83 @@ class Api
     }
 
     /**
+     * Register a transaction.
+     *
+     * @param array $transactionData
+     * @return RegisterInterface
+     */
+    public function register(array $transactionData): RegisterInterface
+    {
+        return $this->registerTransaction($transactionData);
+    }
+
+    /**
+     * Verify a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function verify(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_VERIFY);
+    }
+
+    /**
+     * Authorize a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function authorize(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_AUTH);
+    }
+
+    /**
+     * Cancel a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function cancel(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_CANCEL);
+    }
+
+    /**
+     * Capture a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function capture(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_CAPTURE);
+    }
+
+    /**
+     * Authorize and capture a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function sale(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_SALE);
+    }
+
+    /**
+     * Refunds a transaction.
+     *
+     * @param array $transactionData
+     * @return ProcessInterface
+     */
+    public function refund(array $transactionData): ProcessInterface
+    {
+        return $this->processTransaction($transactionData, self::OPERATION_REFUND);
+    }
+
+    /**
      * Given the transaction ID, returns a URI that the user should be redirected to in order to enter their card
      * details for that transaction.
      *
