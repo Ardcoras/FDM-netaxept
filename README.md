@@ -3,7 +3,8 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://api.travis-ci.com/fdmweb/FDM-netaxept.png?branch=master)](https://travis-ci.org/fdmweb/FDM-netaxept)
 [![Latest Stable Version](https://poser.pugx.org/fdm/netaxept/version.png)](https://packagist.org/packages/fdm/netaxept)
-[![Code Coverage](https://img.shields.io/codecov/c/github/fdmweb/FDM-netaxept.svg)](https://codecov.io/gh/fdmweb/FDM-netaxept)
+[![codecov](https://codecov.io/gh/fdmweb/FDM-netaxept/branch/master/graph/badge.svg)](https://codecov.io/gh/fdmweb/FDM-netaxept)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fdmweb/FDM-netaxept/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fdmweb/FDM-netaxept/?branch=master)
 
 This project provides a simple interface to NETS' Netaxept payment gateway.
 
