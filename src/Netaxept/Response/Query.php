@@ -165,6 +165,23 @@ class Query extends AbstractResponse implements QueryInterface, ErrorInterface
     /**
      * {@inheritdoc}
      *
+     * @return array
+     */
+    public function getCardInformation(): array
+    {
+        return [
+            'expiryDate' => (string) $this->xml->CardInformation->ExpiryDate,
+            'issuer' => (string) $this->xml->CardInformation->Issuer,
+            'issuerCountry' => (string) $this->xml->CardInformation->IssuerCountry,
+            'maskedPAN' => (string) $this->xml->CardInformation->MaskedPAN,
+            'paymentMethod' => (string) $this->xml->CardInformation->PaymentMethod,
+            'issuerId' => (int) $this->xml->CardInformation->IssuerId,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
      * @return int
      */
     public function getOrderTotal(): int

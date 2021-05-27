@@ -80,6 +80,13 @@ interface QueryInterface
     public function getOrderInformation(): array;
 
     /**
+     * Should extract the card information data from the response
+     *
+     * @return array
+     */
+    public function getCardInformation(): array;
+
+    /**
      * Should extract the value of the order total, which is a value in cents. So, in the case of the DKK currency,
      * an order total of 80085 is actually 800.85 Kroner.
      *
