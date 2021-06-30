@@ -1,9 +1,13 @@
 {
-    "name": "fdm/netaxept",
-    "description": "Netaxept API integration package",
+    "name": "ardcoras/netaxept",
+    "description": "Netaxept API integration package, fork of fdm/netaxept.",
     "type": "library",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Jyri-Petteri Paloposki",
+            "email": "jyri-petteri.paloposki@ardcoras.fi"
+        },
         {
             "name": "Andrew Plank",
             "email": "apl@fdm.dk"
